@@ -28,7 +28,7 @@ I made a web application that shows different tours, of each tour you can see an
 
 ## Portfolio Link
 
-`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Tours%20app%20page`
+`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Tours%20App%20Page`
 
 ## Video
 
