@@ -14,7 +14,8 @@ I made a web application that shows different tours, of each tour you can see an
 ## Technologies used
 
 1. React JS
-2. CSS3
+2. Typescript
+3. CSS3
 
 ## Video
 
@@ -22,21 +23,23 @@ https://user-images.githubusercontent.com/99032604/199139972-fd1cf2b4-ddd9-4850-
 
 ## Documentation
 
-In the `helpers/getTours.js` file there is a function called `getTours()` that builds the structure of an API call that will give us information about the Tours:
+In the `api/getTours.ts` file there is a function called `getTours()` that builds the structure of an API call that will give us information about the Tours:
 
 ```
-export const getTours = async () => {
-  const url = "https://course-api.com/react-tours-project";
+import { Tour } from "../entities/entities";
 
-  let resp = await fetch(url);
+export const getTours = async (): Promise<Tour[]> => {
+  const url: string = "https://course-api.com/react-tours-project";
 
-  let data = await resp.json();
+  const request = await fetch(url);
+
+  const data: Tour[] = await request.json();
 
   const tours = data.map((tour) => ({
     id: tour.id,
     name: tour.name,
     info: tour.info,
-    img: tour.image,
+    image: tour.image,
     price: tour.price,
   }));
 
@@ -48,11 +51,12 @@ In the CustomHook called `useFetchTour()` we are going to use the helper functio
 
 ```
 import { useEffect, useState } from "react";
-import { getTours } from "../helpers/getTours";
+import { getTours } from "../api/getTours";
+import { Tour, UseFetchTour } from "../entities/entities";
 
-export const useFetchTour = () => {
-  const [information, setInformation] = useState([]);
-  const [loading, setLoading] = useState(true);
+export const useFetchTour = (): UseFetchTour => {
+  const [information, setInformation] = useState<Tour[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const getInformation = async () => {
     const getInfo = await getTours();
@@ -65,65 +69,42 @@ export const useFetchTour = () => {
   }, []);
 
   return {
+    loading,
     information,
     setInformation,
-    loading,
+    getInformation,
   };
 };
 ```
 
-In the CustomHook called `useFetchTourReload()` it will do the same but when a button is pressed:
+In the `CardTour.tsx` component we will have some logic. First we take the variable `newDescription` in which we will divide the information when there is a point. Then there is a `description` state that will receive the first index of the previously generated array and finally a state of the text of a button called `buttonRead`. In the `handleReadText()` function if the state has the summarized information it will add all the information and change the button text and if it is the other way around it will do the opposite. Finally in handleDeleteTour it will delete that Tour from all Tours:
 
 ```
-import { useEffect, useState } from "react";
-import { getTours } from "../helpers/getTours";
+const [description, setDescription] = useState<string>("");
+const [buttonRead, setButtonRead] = useState<string>("Read More");
 
-export const useFetchTourReload = () => {
-  const [saveTours, setSaveTours] = useState([]);
-  const [loadingReload, setLoadingReload] = useState(true);
-
-  const getInformation = async () => {
-    const getInfo = await getTours();
-    setSaveTours(getInfo);
-    setLoadingReload(false);
-  };
-
-  useEffect(() => {
-    getInformation();
-  }, []);
-
-  return {
-    saveTours,
-    loadingReload,
-  };
-};
-```
-
-In the `CardTour.jsx` component we will have some logic. First we take the variable `newDescription` in which we will divide the information when there is a point. Then there is a `description` state that will receive the first index of the previously generated array and finally a state of the text of a button called `buttonRead`. In the `handleReadText()` function if the state has the summarized information it will add all the information and change the button text and if it is the other way around it will do the opposite. Finally in handleDeleteTour it will delete that Tour from all Tours:
-
-```
-const newDescription = info.split(".");
-const [description, setDescription] = useState(`${newDescription[0]}...`);
-const [buttonRead, setButtonRead] = useState("Read More");
-
-const handleReadText = (e) => {
-    if (description === `${newDescription[0]}...`) {
-        setDescription(info);
-        setButtonRead("Read Less");
-    } else {
-        setDescription(`${newDescription[0]}...`);
-        setButtonRead("Read More");
-    }
+const handleReadText: React.MouseEventHandler<HTMLButtonElement> = () => {
+  if (description.includes("...")) {
+    setDescription(info);
+    setButtonRead("Read Less");
+    return;
+  }
+  setDescription(`${info.split(".")[0]}...`);
+  setButtonRead("Read More");
+  return;
 };
 
-const handleDeleteTour = (e) => {
-    const cardContainer = e.target.parentElement;
-    for (let i = 0; i < information.length; i++) {
-        if (information[i].id === cardContainer.id) {
-            information.splice(i, 1);
-        }
-    }
+const handleDeleteTour: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+  const target = e.target as HTMLElement;
+  const cardContainer = target.parentElement;
 
-    return setInformation([...information]);
+  const tours = information.filter((tour) => tour.id !== cardContainer?.id);
+
+  return setInformation(tours);
 };
+
+useEffect(() => {
+  const newDescription: string[] = info.split(".");
+  setDescription(`${newDescription[0]}...`);
+}, []);
 ```
