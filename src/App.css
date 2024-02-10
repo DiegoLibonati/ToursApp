@@ -57,6 +57,7 @@ body {
   background-color: #77a6b6;
   width: 7rem;
   height: 0.5rem;
+  border-radius: 2rem;
 }
 
 .cards_container {
@@ -107,6 +108,7 @@ body {
   font-size: 1.5rem;
   background-color: #77a6b68c;
   border-radius: 1rem;
+  padding: .5rem;
 }
 
 .text-card {
@@ -117,12 +119,13 @@ body {
 }
 
 #readmore {
-  background-color: none;
+  background-color: transparent;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #77a6b6;
   cursor: pointer;
-  padding-left: 1rem;
+  padding-left: .5rem;
+  cursor: pointer;
 }
 
 #delete-btn {

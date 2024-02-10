@@ -1,4 +1,3 @@
-import React from "react";
 import { CardTour } from "./CardTour";
 import { useFetchTour } from "../hooks/useFetchTour";
 
