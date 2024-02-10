@@ -19,7 +19,7 @@ I made a web application that shows different tours, of each tour you can see an
 
 ## Video
 
-https://user-images.githubusercontent.com/99032604/199139972-fd1cf2b4-ddd9-4850-a440-2d3d0acaf0af.mp4
+https://github.com/DiegoLibonati/Tours-App-Page/assets/99032604/79c95c90-15aa-42ce-a0a2-3d322b3ef493
 
 ## Documentation
 
