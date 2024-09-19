@@ -1,4 +1,4 @@
-# Tours-App-Page
+# ToursApp
 
 ## Getting Started
 
@@ -19,7 +19,7 @@ I made a web application that shows different tours, of each tour you can see an
 
 ## Portfolio Link
 
-[`https://www.diegolibonati.com.ar/#/project/100`](https://www.diegolibonati.com.ar/#/project/100)
+[`https://www.diegolibonati.com.ar/#/project/ToursApp`](https://www.diegolibonati.com.ar/#/project/ToursApp)
 
 ## Video
 
