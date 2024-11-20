@@ -4,8 +4,8 @@
 
 1. Clone the repository
 2. Join to the correct path of the clone
-3. Install node_modules with yarn install
-4. Use yarn dev or start (depends package.json) to run the app page
+3. Execute: `yarn install` or `npm install`
+4. Execute: `yarn start` or ``npm start` and enjoy!
 
 ## Description
 
@@ -17,6 +17,35 @@ I made a web application that shows different tours, of each tour you can see an
 2. Typescript
 3. CSS3
 
+## Libraries used
+
+#### Dependencies
+
+```
+"@types/jest": "^29.5.13"
+"@types/node": "^20.10.6"
+"@types/react": "^18.2.46"
+"@types/react-dom": "^18.2.18"
+"react": "^18.2.0"
+"react-dom": "^18.2.0"
+"react-scripts": "5.0.1"
+"web-vitals": "^2.1.4"
+```
+
+#### devDependencies
+
+```
+"@testing-library/dom": "^10.4.0"
+"@testing-library/jest-dom": "^6.6.2"
+"@testing-library/react": "^16.0.1"
+"@testing-library/user-event": "^14.5.2"
+"typescript": "^5.3.3"
+"jest": "^29.7.0"
+"jest-environment-jsdom": "^29.7.0"
+"jest-fixed-jsdom": "^0.0.9"
+"ts-jest": "^29.2.5"
+```
+
 ## Portfolio Link
 
 [`https://www.diegolibonati.com.ar/#/project/ToursApp`](https://www.diegolibonati.com.ar/#/project/ToursApp)
@@ -25,90 +54,7 @@ I made a web application that shows different tours, of each tour you can see an
 
 https://github.com/DiegoLibonati/Tours-App-Page/assets/99032604/79c95c90-15aa-42ce-a0a2-3d322b3ef493
 
-## Documentation
+## Testing
 
-In the `api/getTours.ts` file there is a function called `getTours()` that builds the structure of an API call that will give us information about the Tours:
-
-```
-import { Tour } from "../entities/entities";
-
-export const getTours = async (): Promise<Tour[]> => {
-  const url: string = "https://course-api.com/react-tours-project";
-
-  const request = await fetch(url);
-
-  const data: Tour[] = await request.json();
-
-  const tours = data.map((tour) => ({
-    id: tour.id,
-    name: tour.name,
-    info: tour.info,
-    image: tour.image,
-    price: tour.price,
-  }));
-
-  return tours;
-};
-```
-
-In the CustomHook called `useFetchTour()` we are going to use the helper function we created to make the API call and modify the `information and loading` states for its use:
-
-```
-import { useEffect, useState } from "react";
-import { getTours } from "../api/getTours";
-import { Tour, UseFetchTour } from "../entities/entities";
-
-export const useFetchTour = (): UseFetchTour => {
-  const [information, setInformation] = useState<Tour[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  const getInformation = async () => {
-    const getInfo = await getTours();
-    setInformation(getInfo);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    getInformation();
-  }, []);
-
-  return {
-    loading,
-    information,
-    setInformation,
-    getInformation,
-  };
-};
-```
-
-In the `CardTour.tsx` component we will have some logic. First we take the variable `newDescription` in which we will divide the information when there is a point. Then there is a `description` state that will receive the first index of the previously generated array and finally a state of the text of a button called `buttonRead`. In the `handleReadText()` function if the state has the summarized information it will add all the information and change the button text and if it is the other way around it will do the opposite. Finally in handleDeleteTour it will delete that Tour from all Tours:
-
-```
-const [description, setDescription] = useState<string>("");
-const [buttonRead, setButtonRead] = useState<string>("Read More");
-
-const handleReadText: React.MouseEventHandler<HTMLButtonElement> = () => {
-  if (description.includes("...")) {
-    setDescription(info);
-    setButtonRead("Read Less");
-    return;
-  }
-  setDescription(`${info.split(".")[0]}...`);
-  setButtonRead("Read More");
-  return;
-};
-
-const handleDeleteTour: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-  const target = e.target as HTMLElement;
-  const cardContainer = target.parentElement;
-
-  const tours = information.filter((tour) => tour.id !== cardContainer?.id);
-
-  return setInformation(tours);
-};
-
-useEffect(() => {
-  const newDescription: string[] = info.split(".");
-  setDescription(`${newDescription[0]}...`);
-}, []);
-```
+1. Join to the correct path of the clone
+2. Execute: `yarn test` or `npm test`
