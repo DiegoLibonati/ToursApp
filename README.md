@@ -44,6 +44,7 @@ I made a web application that shows different tours, of each tour you can see an
 "jest-environment-jsdom": "^29.7.0"
 "jest-fixed-jsdom": "^0.0.9"
 "ts-jest": "^29.2.5"
+"msw": "^2.4.11"
 ```
 
 ## Portfolio Link

@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { CardTourProps } from "../entities/entities";
+
+interface CardTourProps {
+  id: string;
+  name: string;
+  info: string;
+  image: string;
+  price: string;
+  handleDeleteTour: React.MouseEventHandler<HTMLButtonElement>;
+}
 
 export const CardTour = ({
   id,
@@ -7,8 +15,7 @@ export const CardTour = ({
   info,
   image,
   price,
-  information,
-  setInformation,
+  handleDeleteTour,
 }: CardTourProps): JSX.Element => {
   const [description, setDescription] = useState<string>("");
   const [buttonRead, setButtonRead] = useState<string>("Read More");
@@ -22,15 +29,6 @@ export const CardTour = ({
     setDescription(`${info.split(".")[0]}...`);
     setButtonRead("Read More");
     return;
-  };
-
-  const handleDeleteTour: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    const target = e.target as HTMLElement;
-    const cardContainer = target.parentElement;
-
-    const tours = information.filter((tour) => tour.id !== cardContainer?.id);
-
-    return setInformation(tours);
   };
 
   useEffect(() => {
@@ -47,17 +45,15 @@ export const CardTour = ({
       </div>
       <p className="text-card">
         {description}
-        <button
-          id="readmore"
-          onClick={(e) => handleReadText(e)}
-        >
+        <button id="readmore" onClick={handleReadText} aria-label="read action">
           {buttonRead}
         </button>
       </p>
       <button
         type="button"
         id="delete-btn"
-        onClick={(e) => handleDeleteTour(e)}
+        onClick={handleDeleteTour}
+        aria-label="not interested tour"
       >
         Not Interested
       </button>
