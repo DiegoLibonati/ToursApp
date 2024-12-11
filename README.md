@@ -5,7 +5,7 @@
 1. Clone the repository
 2. Join to the correct path of the clone
 3. Execute: `yarn install` or `npm install`
-4. Execute: `yarn start` or ``npm start` and enjoy!
+4. Execute: `yarn start` or `npm start` and enjoy!
 
 ## Description
 
