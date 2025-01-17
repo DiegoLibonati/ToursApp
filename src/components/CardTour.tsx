@@ -37,13 +37,13 @@ export const CardTour = ({
   }, []);
 
   return (
-    <article className="card_container" id={id}>
+    <article className="card" id={id}>
       <img src={image} alt={name}></img>
-      <div className="card_container_title">
+      <div className="card__title">
         <h3>{name}</h3>
         <p>${price}</p>
       </div>
-      <p className="text-card">
+      <p className="card__description">
         {description}
         <button id="readmore" onClick={handleReadText} aria-label="read action">
           {buttonRead}

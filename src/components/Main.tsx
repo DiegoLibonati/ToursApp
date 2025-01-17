@@ -16,8 +16,8 @@ export const Main = (): JSX.Element => {
 
   return (
     <main>
-      <section className="title_container">
-        <article className="title_container_article">
+      <section className="app__header">
+        <article className="app__header__title">
           <h1>
             {loading
               ? "Searching Tours..."
@@ -35,7 +35,7 @@ export const Main = (): JSX.Element => {
         </article>
       </section>
 
-      <section className="cards_container">
+      <section className="cards">
         {loading && <div className="spinner"></div>}
 
         {tours &&
