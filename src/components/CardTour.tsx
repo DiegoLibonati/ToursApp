@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import "./CardTour.css";
+
 interface CardTourProps {
   id: string;
   name: string;
@@ -38,22 +40,31 @@ export const CardTour = ({
 
   return (
     <article className="card" id={id}>
-      <img src={image} alt={name}></img>
-      <div className="card__title">
-        <h3>{name}</h3>
-        <p>${price}</p>
+      <img src={image} alt={name} className="card__img"></img>
+
+      <div className="card__header">
+        <h3 className="card__header-name">{name}</h3>
+        <p className="card__header-price">${price}</p>
       </div>
+
       <p className="card__description">
         {description}
-        <button id="readmore" onClick={handleReadText} aria-label="read action">
+        <button
+          id="readmore"
+          onClick={handleReadText}
+          aria-label="read action"
+          className="card__description-read-more"
+        >
           {buttonRead}
         </button>
       </p>
+
       <button
         type="button"
         id="delete-btn"
         onClick={handleDeleteTour}
         aria-label="not interested tour"
+        className="card__btn-delete"
       >
         Not Interested
       </button>

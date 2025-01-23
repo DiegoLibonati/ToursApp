@@ -15,20 +15,25 @@ export const Main = (): JSX.Element => {
   };
 
   return (
-    <main>
-      <section className="app__header">
-        <article className="app__header__title">
-          <h1>
+    <main className="main-app">
+      <section className="app-header">
+        <article className="app-header__content">
+          <h1 className="app-header__content-title">
             {loading
               ? "Searching Tours..."
               : tours
               ? "Our Tours"
               : "No Tours Left"}
           </h1>
-          <div></div>
+
+          <div className="app-header__content-separator"></div>
 
           {!tours && !loading && (
-            <button onClick={() => handleGetTours()} aria-label="refresh tours">
+            <button
+              onClick={() => handleGetTours()}
+              aria-label="refresh tours"
+              className="app-header__content-refresh"
+            >
               Refresh
             </button>
           )}
