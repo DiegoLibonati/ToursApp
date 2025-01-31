@@ -43,8 +43,8 @@ export const CardTour = ({
       <img src={image} alt={name} className="card__img"></img>
 
       <div className="card__header">
-        <h3 className="card__header-name">{name}</h3>
-        <p className="card__header-price">${price}</p>
+        <h3 className="card__name">{name}</h3>
+        <p className="card__price">${price}</p>
       </div>
 
       <p className="card__description">
@@ -53,7 +53,7 @@ export const CardTour = ({
           id="readmore"
           onClick={handleReadText}
           aria-label="read action"
-          className="card__description-read-more"
+          className="card__btn-read-more"
         >
           {buttonRead}
         </button>

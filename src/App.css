@@ -13,11 +13,12 @@
   flex-flow: column wrap;
 }
 
-.app-header__content-title {
+.app-header__title {
   font-size: 2.5rem;
+  text-align: center;
 }
 
-.app-header__content-separator {
+.app-header__separator {
   align-self: center;
   background-color: var(--secondary-color);
   width: 7rem;
@@ -25,7 +26,7 @@
   border-radius: 2rem;
 }
 
-.app-header__content-refresh {
+.app-header__btn-refresh {
   padding: 0.5rem;
   font-size: 1.5rem;
   border-radius: 1rem;
@@ -65,11 +66,11 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .app-header__content-title {
+  .app-header__title {
     font-size: 4rem;
   }
 
-  .app-header__content-separator {
+  .app-header__separator {
     width: 10rem;
   }
 

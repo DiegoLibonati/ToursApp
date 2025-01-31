@@ -29,11 +29,11 @@
   padding: 1rem 0 1rem 0;
 }
 
-.card__header-name {
+.card__name {
   font-size: 1.5rem;
 }
 
-.card__header-price {
+.card__price {
   font-size: 0.8rem;
   background-color: var(--secondary-color);
   color: var(--white-color);
@@ -48,7 +48,7 @@
   text-align: justify;
 }
 
-.card__description-read-more {
+.card__btn-read-more {
   background-color: transparent;
   border: none;
   font-size: 0.8rem;
@@ -75,11 +75,11 @@
     width: 40rem;
   }
 
-  .card__header-name {
+  .card__name {
     font-size: 2rem;
   }
 
-  .card__header-price {
+  .card__price {
     font-size: 1.5rem;
   }
 
@@ -87,7 +87,7 @@
     font-size: 1rem;
   }
 
-  .card__description-read-more {
+  .card__btn-read-more {
     font-size: 1rem;
   }
 

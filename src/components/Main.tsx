@@ -18,7 +18,7 @@ export const Main = (): JSX.Element => {
     <main className="main-app">
       <section className="app-header">
         <article className="app-header__content">
-          <h1 className="app-header__content-title">
+          <h1 className="app-header__title">
             {loading
               ? "Searching Tours..."
               : tours
@@ -26,13 +26,13 @@ export const Main = (): JSX.Element => {
               : "No Tours Left"}
           </h1>
 
-          <div className="app-header__content-separator"></div>
+          <div className="app-header__separator"></div>
 
           {!tours && !loading && (
             <button
               onClick={() => handleGetTours()}
               aria-label="refresh tours"
-              className="app-header__content-refresh"
+              className="app-header__btn-refresh"
             >
               Refresh
             </button>
