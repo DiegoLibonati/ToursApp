@@ -1,7 +1,7 @@
 import { screen, render } from "@testing-library/react";
 import user from "@testing-library/user-event";
 
-import { CardTour } from "./CardTour";
+import { CardTour } from "@src/components/CardTour";
 
 type RenderComponent = {
   props: {

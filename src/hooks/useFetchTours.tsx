@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { Tour } from "../entities/entities";
+import { Tour } from "@src/entities/entities";
 
-import { getTours } from "../api/getTours";
+import { getTours } from "@src/api/getTours";
 
 type UseFetchTours = {
   loading: boolean;

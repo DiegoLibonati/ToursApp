@@ -1,10 +1,10 @@
 import { screen, render } from "@testing-library/react";
 import user from "@testing-library/user-event";
 
-import { mockTours } from "../../tests/jest.constants";
-import { createServer } from "../../tests/msw/server";
+import { mockTours } from "@tests/jest.constants";
+import { createServer } from "@tests/msw/server";
 
-import { Main } from "./Main";
+import { Main } from "@src/components/Main";
 
 type RenderComponent = {
   container: HTMLElement;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import "./CardTour.css";
+import "@src/components/CardTour.css";
 
 interface CardTourProps {
   id: string;

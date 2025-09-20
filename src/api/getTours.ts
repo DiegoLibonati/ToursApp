@@ -1,4 +1,4 @@
-import { Tour } from "../entities/entities";
+import { Tour } from "@src/entities/entities";
 
 export const getTours = async (): Promise<Tour[]> => {
   const request = await fetch("/react-tours-project");

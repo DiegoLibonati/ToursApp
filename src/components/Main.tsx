@@ -1,6 +1,6 @@
-import { CardTour } from "./CardTour";
+import { CardTour } from "@src/components/CardTour";
 
-import { useFetchTours } from "../hooks/useFetchTours";
+import { useFetchTours } from "@src/hooks/useFetchTours";
 
 export const Main = (): JSX.Element => {
   const { tours, loading, setTours, handleGetTours } = useFetchTours();
