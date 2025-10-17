@@ -1,34 +1,51 @@
-import { CardTour } from "@src/components/CardTour";
+import React, { useEffect, useState } from "react";
 
-import { useFetchTours } from "@src/hooks/useFetchTours";
+import { Tour } from "@src/entities/app";
 
-export const Main = (): JSX.Element => {
-  const { tours, loading, setTours, handleGetTours } = useFetchTours();
+import { CardTour } from "@src/components/CardTour/CardTour";
 
-  const handleDeleteTour: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    const target = e.target as HTMLElement;
-    const cardContainer = target.parentElement;
+import { getTours } from "@src/api/get/getTours";
 
-    if (tours?.length === 1) return setTours(null);
+import "@src/pages/ToursPage/ToursPage.css";
 
-    return setTours(tours!.filter((tour) => tour.id !== cardContainer?.id));
+export const ToursPage = () => {
+  const [tours, setTours] = useState<Tour[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const handleDeleteTour = (id: string) => {
+    if (tours?.length === 1) return setTours([]);
+
+    return setTours(tours!.filter((tour) => tour.id !== id));
   };
 
+  const handleGetTours = async () => {
+    setLoading(true);
+
+    const tours = await getTours();
+
+    setTours(tours);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    handleGetTours();
+  }, []);
+
   return (
-    <main className="main-app">
+    <main className="tours-page">
       <section className="app-header">
         <article className="app-header__content">
           <h1 className="app-header__title">
             {loading
               ? "Searching Tours..."
-              : tours
+              : tours.length > 0
               ? "Our Tours"
               : "No Tours Left"}
           </h1>
 
           <div className="app-header__separator"></div>
 
-          {!tours && !loading && (
+          {(!tours || tours.length === 0) && !loading && (
             <button
               onClick={() => handleGetTours()}
               aria-label="refresh tours"
@@ -43,7 +60,7 @@ export const Main = (): JSX.Element => {
       <section className="cards">
         {loading && <div className="spinner"></div>}
 
-        {tours &&
+        {tours.length > 0 &&
           tours!.map((tour) => (
             <CardTour
               key={tour.id}

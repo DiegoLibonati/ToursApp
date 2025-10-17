@@ -1,17 +1,18 @@
 import { screen, render } from "@testing-library/react";
 import user from "@testing-library/user-event";
 
+import { ToursPage } from "@src/pages/ToursPage/ToursPage";
+
 import { mockTours } from "@tests/jest.constants";
 import { createServer } from "@tests/msw/server";
 
-import { Main } from "@src/components/Main";
 
 type RenderComponent = {
   container: HTMLElement;
 };
 
 const renderComponent = (): RenderComponent => {
-  const { container } = render(<Main></Main>);
+  const { container } = render(<ToursPage></ToursPage>);
 
   return {
     container: container,
@@ -19,7 +20,7 @@ const renderComponent = (): RenderComponent => {
 };
 
 const asyncRenderComponent = async (): Promise<RenderComponent> => {
-  const { container } = render(<Main></Main>);
+  const { container } = render(<ToursPage></ToursPage>);
 
   await screen.findAllByRole("img");
 
@@ -28,7 +29,7 @@ const asyncRenderComponent = async (): Promise<RenderComponent> => {
   };
 };
 
-describe("Main.tsx", () => {
+describe("ToursPage.tsx", () => {
   describe("General Tests.", () => {
     createServer([
       {
@@ -43,7 +44,6 @@ describe("Main.tsx", () => {
     test("It should show the loading, the title 'Searching Tours...' should be rendered when searching for tours.", () => {
       const { container } = renderComponent();
 
-      // eslint-disable-next-line
       const loader = container.querySelector(".spinner");
       const heading = screen.getByRole("heading", {
         name: /searching tours.../i,
@@ -56,7 +56,6 @@ describe("Main.tsx", () => {
     test("It should render the title 'Our Tours' and the total number of tours once the tours are loaded.", async () => {
       const { container } = await asyncRenderComponent();
 
-      // eslint-disable-next-line
       const loader = container.querySelector(".spinner");
       const heading = screen.getByRole("heading", {
         name: /our tours/i,
@@ -71,7 +70,6 @@ describe("Main.tsx", () => {
     test("It should render the 'No Tours Left' title and the refresh button when there are no more tours.", async () => {
       const { container } = await asyncRenderComponent();
 
-      // eslint-disable-next-line
       const loader = container.querySelector(".spinner");
       const heading = screen.getByRole("heading", {
         name: /our tours/i,

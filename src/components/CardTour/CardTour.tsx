@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import "@src/components/CardTour.css";
+import { CardTourProps } from "@src/entities/props";
 
-interface CardTourProps {
-  id: string;
-  name: string;
-  info: string;
-  image: string;
-  price: string;
-  handleDeleteTour: React.MouseEventHandler<HTMLButtonElement>;
-}
+import "@src/components/CardTour/CardTour.css";
 
 export const CardTour = ({
   id,
@@ -62,7 +55,7 @@ export const CardTour = ({
       <button
         type="button"
         id="delete-btn"
-        onClick={handleDeleteTour}
+        onClick={() => handleDeleteTour(id)}
         aria-label="not interested tour"
         className="card__btn-delete"
       >

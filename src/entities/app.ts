@@ -1,5 +1,3 @@
-// ##### TYPES #####
-
 export type Tour = {
   id: string;
   name: string;

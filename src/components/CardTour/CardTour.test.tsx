@@ -1,17 +1,12 @@
 import { screen, render } from "@testing-library/react";
 import user from "@testing-library/user-event";
 
-import { CardTour } from "@src/components/CardTour";
+import { CardTourProps } from "@src/entities/props";
+
+import { CardTour } from "@src/components/CardTour/CardTour";
 
 type RenderComponent = {
-  props: {
-    id: string;
-    name: string;
-    info: string;
-    image: string;
-    price: string;
-    handleDeleteTour: jest.Mock;
-  };
+  props: { handleDeleteTour: jest.Mock } & CardTourProps;
   container: HTMLElement;
 };
 
