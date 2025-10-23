@@ -6,7 +6,6 @@ import { ToursPage } from "@src/pages/ToursPage/ToursPage";
 import { mockTours } from "@tests/jest.constants";
 import { createServer } from "@tests/msw/server";
 
-
 type RenderComponent = {
   container: HTMLElement;
 };
@@ -44,7 +43,7 @@ describe("ToursPage.tsx", () => {
     test("It should show the loading, the title 'Searching Tours...' should be rendered when searching for tours.", () => {
       const { container } = renderComponent();
 
-      const loader = container.querySelector(".spinner");
+      const loader = container.querySelector<HTMLDivElement>(".spinner");
       const heading = screen.getByRole("heading", {
         name: /searching tours.../i,
       });
@@ -56,7 +55,7 @@ describe("ToursPage.tsx", () => {
     test("It should render the title 'Our Tours' and the total number of tours once the tours are loaded.", async () => {
       const { container } = await asyncRenderComponent();
 
-      const loader = container.querySelector(".spinner");
+      const loader = container.querySelector<HTMLDivElement>(".spinner");
       const heading = screen.getByRole("heading", {
         name: /our tours/i,
       });
@@ -70,7 +69,7 @@ describe("ToursPage.tsx", () => {
     test("It should render the 'No Tours Left' title and the refresh button when there are no more tours.", async () => {
       const { container } = await asyncRenderComponent();
 
-      const loader = container.querySelector(".spinner");
+      const loader = container.querySelector<HTMLDivElement>(".spinner");
       const heading = screen.getByRole("heading", {
         name: /our tours/i,
       });
