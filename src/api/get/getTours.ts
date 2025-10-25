@@ -1,6 +1,6 @@
-import { Tour } from "@src/entities/app";
+import { GetToursResponse } from "@src/entities/responses";
 
-export const getTours = async (): Promise<Tour[]> => {
+export const getTours = async (): Promise<GetToursResponse> => {
   try {
     const response = await fetch("/react-tours-project");
 
@@ -8,7 +8,7 @@ export const getTours = async (): Promise<Tour[]> => {
       throw new Error("Error fetching tours.");
     }
 
-    const data: Tour[] = await response.json();
+    const data: GetToursResponse = await response.json();
 
     const tours = data.map((tour) => ({
       id: tour.id,
